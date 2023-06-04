@@ -28,7 +28,6 @@ int32_t main()
         adj[b].push_back(a);
     }
 
-    vector<bool> visited(n+1, false);
     vector<int> color(n+1, -1);
 
     for(int i = 1;i<=n;i++) {
