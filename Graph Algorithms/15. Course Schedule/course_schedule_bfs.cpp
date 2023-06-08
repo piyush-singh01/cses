@@ -34,7 +34,7 @@ int32_t main()
         }
     }
 
-    if(ans.size() != n) {
+    if((int)ans.size() != n) {
         cout<<"IMPOSSIBLE";
         return 0;
     }
