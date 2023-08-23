@@ -11,37 +11,34 @@ int32_t main()
 {
     int n,m;cin>>n>>m;
     vector<vector<ar>> adj(n+1);
-
     for(int i = 0;i<m;i++) {
-        int a,b,w;cin>>a>>b>>w;
-        adj[a].push_back({b,w});
+        int a,b;cin>>a>>b;
+        ll w;cin>>w;
+        adj[a].push_back({b, w});
     }
 
-    vector<ll> dist(n+1, INF);
-    vector<bool> visited(n+1, false);
+    const int S = 1;
     pqmin<ar> pq;
+    vector<ll> dist(n + 1, -1);
 
-    int src = 1;
-    dist[src] = 0;
-    pq.push({dist[src], src});
+    pq.push({0, S});
     while(!pq.empty()) {
         ar curr = pq.top();
         pq.pop();
 
-        ll dis = curr[0];
         int fr = curr[1];
-        if(visited[fr]) continue;
-        visited[fr] = true;
+        ll dis = curr[0];
+
+        if(dist[fr] != -1) continue;
+        dist[fr] = dis;
+        
         for(ar child:adj[fr]) {
             int to = child[0];
             ll wt = child[1];
-            if(dist[to] > dis + wt) {
-                dist[to] = dist[fr] + wt;
-                pq.push({dist[to], to});
-            }
+            pq.push({dis + wt, to});
         }
     }
-
+    
     for(int i = 1;i<=n;i++) {
         cout<<dist[i]<<" ";
     }
